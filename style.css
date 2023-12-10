@@ -1,0 +1,16 @@
+* {
+    background-color: gray;
+}
+.button {
+    width: 60px;
+    height: 60px;
+    background-color: whitesmoke;
+    padding: 6px;
+    border-radius: 9px;
+    box-sizing: border-box;
+}
+
+#decimal {
+    padding: 40px 25px 10px 25px;
+}
+
