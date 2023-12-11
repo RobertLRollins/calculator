@@ -11,23 +11,24 @@ function div(a, b) {
     return a / b;
 }
 
-let displayValue;
+let displayValue = '0';
 let num1;
 let num2;
 let operator;
 
+console.log(displayValue);
 function operate(a, b, op) {
-    num1 = a;
-    num2 = b;
+    //num1 = a;
+    //num2 = b;
     
     if (op === '+') {
-        return add(num1, num2);
+        return add(a, b);
     } else if (op === '-') {
-        return sub(num1, num2);
+        return sub(a, b);
     } else if (op === '*') {
-        return mul(num1, num2);
+        return mul(a, b);
     } else if (op === '/') {
-        return div(num1, num2);
+        return div(a, b);
     }
 }
 
@@ -38,73 +39,141 @@ buttonMenu.addEventListener('click', (event) => {
 
     switch(target.id) {
         case 'zero':
-            document.getElementById('textOutput').textContent += '0';
+            if (document.getElementById('bottomOutput').textContent === '0') {
+                document.getElementById('bottomOutput').textContent = '0';
+                displayValue = '0';
+                break;
+            }
+            document.getElementById('bottomOutput').textContent += '0';
             displayValue += '0';
+            console.log(displayValue);
             break;
         case 'one':
-            document.getElementById('textOutput').textContent += '1';
+            if (document.getElementById('bottomOutput').textContent === '0') {
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
+            document.getElementById('bottomOutput').textContent += '1';
             displayValue += '1';
             break;
         case 'two':
-            document.getElementById('textOutput').textContent += '2';
+            if (document.getElementById('bottomOutput').textContent === '0') {
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
+            document.getElementById('bottomOutput').textContent += '2';
             displayValue += '2';
             break;
         case 'three':
-            document.getElementById('textOutput').textContent += '3';
+            if (document.getElementById('bottomOutput').textContent === '0') {
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
+            document.getElementById('bottomOutput').textContent += '3';
             displayValue += '3';
             break;
         case 'four':
-            document.getElementById('textOutput').textContent += '4';
+            if (document.getElementById('bottomOutput').textContent === '0') {
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
+            document.getElementById('bottomOutput').textContent += '4';
             displayValue += '4';
             break;
         case 'five':
-            document.getElementById('textOutput').textContent += '5';
+            if (document.getElementById('bottomOutput').textContent === '0') {
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
+            document.getElementById('bottomOutput').textContent += '5';
             displayValue += '5';
             break;
         case 'six':
-            document.getElementById('textOutput').textContent += '6';
+            if (document.getElementById('bottomOutput').textContent === '0') {
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
+            document.getElementById('bottomOutput').textContent += '6';
             displayValue += '6';
             break;
         case 'seven':
-            document.getElementById('textOutput').textContent += '7';
+            if (document.getElementById('bottomOutput').textContent === '0') {
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
+            document.getElementById('bottomOutput').textContent += '7';
             displayValue += '7';
             break;
         case 'eight':
-            document.getElementById('textOutput').textContent += '8';
+            if (document.getElementById('bottomOutput').textContent === '0') {
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
+            document.getElementById('bottomOutput').textContent += '8';
             displayValue += '8';
             break;
         case 'nine':
-            document.getElementById('textOutput').textContent += '9';
+            if (document.getElementById('bottomOutput').textContent === '0') {
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
+            document.getElementById('bottomOutput').textContent += '9';
             displayValue += '9';
             break;
         case 'decimal':
-            document.getElementById('textOutput').textContent += '.';
+            if(displayValue.includes('.')) {
+                break;
+            }
+            document.getElementById('bottomOutput').textContent += '.';
             displayValue += '.';
                 break;
         case 'plus':
-            document.getElementById('textOutput').textContent += ' + ';
-            displayValue += ' + ';
+            document.getElementById('topOutput').textContent = displayValue + ' + ';
+            num1 = +displayValue;
+            displayValue = '0';
+            document.getElementById('bottomOutput').textContent = '0';
+            operator = '+';
+            //document.getElementById('textOutput').textContent += ' + ';
+            //displayValue += ' + ';
             break;
         case 'minus':
-            document.getElementById('textOutput').textContent += ' - ';
-            displayValue += ' - ';
+            document.getElementById('topOutput').textContent = displayValue + ' - ';
+            num1 = +displayValue;
+            displayValue = '0';
+            document.getElementById('bottomOutput').textContent = '0';
+            operator = '-';
+            //document.getElementById('textOutput').textContent += ' - ';
+            //displayValue += ' - ';
             break;
         case 'multiply':
-            document.getElementById('textOutput').textContent += ' * ';
-            displayValue += ' * ';
+            document.getElementById('topOutput').textContent = displayValue + ' * ';
+            num1 = +displayValue;
+            displayValue = '0';
+            document.getElementById('bottomOutput').textContent = '0';
+            operator = '*';
+            //document.getElementById('textOutput').textContent += ' * ';
+            //displayValue += ' * ';
             break;
         case 'divide':
-            document.getElementById('textOutput').textContent += ' / ';
-            displayValue += ' / ';
+            document.getElementById('topOutput').textContent = displayValue + ' / ';
+            num1 = +displayValue;
+            displayValue = '0';
+            document.getElementById('bottomOutput').textContent = '0';
+            operator = '/';
+            //document.getElementById('textOutput').textContent += ' / ';
+            //displayValue += ' / ';
             break;    
         case 'clear':
-            
+            location.reload();
             break;
         case 'delete':
             
             break;
         case 'equal':
-            
+            document.getElementById('topOutput').textContent += displayValue + ' = ';
+            num2 = +displayValue;
+            displayValue ='0';
+            document.getElementById('bottomOutput').textContent = operate(num1, num2, operator);
             break;
 
     }
