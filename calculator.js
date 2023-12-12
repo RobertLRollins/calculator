@@ -1,3 +1,5 @@
+//const math = require('mathjs');
+
 function add(a, b) {
     return a + b;
 }
@@ -16,10 +18,7 @@ let num1;
 let num2;
 let operator;
 
-console.log(displayValue);
 function operate(a, b, op) {
-    //num1 = a;
-    //num2 = b;
     
     if (op === '+') {
         return add(a, b);
@@ -46,7 +45,6 @@ buttonMenu.addEventListener('click', (event) => {
             }
             document.getElementById('bottomOutput').textContent += '0';
             displayValue += '0';
-            console.log(displayValue);
             break;
         case 'one':
             if (document.getElementById('bottomOutput').textContent === '0') {
@@ -128,40 +126,85 @@ buttonMenu.addEventListener('click', (event) => {
             displayValue += '.';
                 break;
         case 'plus':
+            if(document.getElementById('topOutput').textContent.includes('+') ||
+            document.getElementById('topOutput').textContent.includes('-') ||
+            document.getElementById('topOutput').textContent.includes('*') ||
+            document.getElementById('topOutput').textContent.includes('/')) {
+                num2 = +displayValue;
+                displayValue ='';
+                document.getElementById('topOutput').textContent = operate(num1, num2, operator) + ' + ';
+                document.getElementById('bottomOutput').textContent = '0';
+                num1 = operate(num1, num2, operator);
+                num2 = '';
+                operator = '+';
+                break;
+            }
             document.getElementById('topOutput').textContent = displayValue + ' + ';
             num1 = +displayValue;
             displayValue = '0';
             document.getElementById('bottomOutput').textContent = '0';
             operator = '+';
-            //document.getElementById('textOutput').textContent += ' + ';
-            //displayValue += ' + ';
+
             break;
         case 'minus':
+            if(document.getElementById('topOutput').textContent.includes('+') ||
+            document.getElementById('topOutput').textContent.includes('-') ||
+            document.getElementById('topOutput').textContent.includes('*') ||
+            document.getElementById('topOutput').textContent.includes('/')) {
+                num2 = +displayValue;
+                displayValue ='';
+                document.getElementById('topOutput').textContent = operate(num1, num2, operator) + ' - ';
+                document.getElementById('bottomOutput').textContent = '0';
+                num1 = operate(num1, num2, operator);
+                num2 = '';
+                operator = '-';
+                break;
+            }
             document.getElementById('topOutput').textContent = displayValue + ' - ';
             num1 = +displayValue;
             displayValue = '0';
             document.getElementById('bottomOutput').textContent = '0';
             operator = '-';
-            //document.getElementById('textOutput').textContent += ' - ';
-            //displayValue += ' - ';
             break;
         case 'multiply':
+            if(document.getElementById('topOutput').textContent.includes('+') ||
+            document.getElementById('topOutput').textContent.includes('-') ||
+            document.getElementById('topOutput').textContent.includes('*') ||
+            document.getElementById('topOutput').textContent.includes('/')) {
+                num2 = +displayValue;
+                displayValue ='';
+                document.getElementById('topOutput').textContent = operate(num1, num2, operator) + ' * ';
+                document.getElementById('bottomOutput').textContent = '0';
+                num1 = operate(num1, num2, operator);
+                num2 = '';
+                operator = '*';
+                break;
+            }
             document.getElementById('topOutput').textContent = displayValue + ' * ';
             num1 = +displayValue;
             displayValue = '0';
             document.getElementById('bottomOutput').textContent = '0';
             operator = '*';
-            //document.getElementById('textOutput').textContent += ' * ';
-            //displayValue += ' * ';
             break;
         case 'divide':
+            if(document.getElementById('topOutput').textContent.includes('+') ||
+            document.getElementById('topOutput').textContent.includes('-') ||
+            document.getElementById('topOutput').textContent.includes('*') ||
+            document.getElementById('topOutput').textContent.includes('/')) {
+                num2 = +displayValue;
+                displayValue ='';
+                document.getElementById('topOutput').textContent = operate(num1, num2, operator) + ' / ';
+                document.getElementById('bottomOutput').textContent = '0';
+                num1 = operate(num1, num2, operator);
+                num2 = '';
+                operator = '/';
+                break;
+            }
             document.getElementById('topOutput').textContent = displayValue + ' / ';
-            num1 = +displayValue;
+            num1 += displayValue;
             displayValue = '0';
             document.getElementById('bottomOutput').textContent = '0';
             operator = '/';
-            //document.getElementById('textOutput').textContent += ' / ';
-            //displayValue += ' / ';
             break;    
         case 'clear':
             location.reload();
@@ -172,9 +215,11 @@ buttonMenu.addEventListener('click', (event) => {
         case 'equal':
             document.getElementById('topOutput').textContent += displayValue + ' = ';
             num2 = +displayValue;
-            displayValue ='0';
+            displayValue ='';
             document.getElementById('bottomOutput').textContent = operate(num1, num2, operator);
+            num1 = '';
+            num2 = '';
+            operator = '';
             break;
-
     }
 });
