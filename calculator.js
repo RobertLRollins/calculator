@@ -126,6 +126,13 @@ buttonMenu.addEventListener('click', (event) => {
             displayValue += '.';
                 break;
         case 'plus':
+            if (document.getElementById('topOutput').textContent.includes('=')) {
+                document.getElementById('topOutput').textContent = displayValue + ' + ';
+                operator = '+';
+                num1 = +displayValue;
+                document.getElementById('bottomOutput').textContent = '0';
+                break;
+            }
             if(document.getElementById('topOutput').textContent.includes('+') ||
             document.getElementById('topOutput').textContent.includes('-') ||
             document.getElementById('topOutput').textContent.includes('*') ||
@@ -147,6 +154,13 @@ buttonMenu.addEventListener('click', (event) => {
 
             break;
         case 'minus':
+            if (document.getElementById('topOutput').textContent.includes('=')) {
+                document.getElementById('topOutput').textContent = displayValue + ' - ';
+                operator = '-';
+                num1 = +displayValue;
+                document.getElementById('bottomOutput').textContent = '0';
+                break;
+            }
             if(document.getElementById('topOutput').textContent.includes('+') ||
             document.getElementById('topOutput').textContent.includes('-') ||
             document.getElementById('topOutput').textContent.includes('*') ||
@@ -167,6 +181,13 @@ buttonMenu.addEventListener('click', (event) => {
             operator = '-';
             break;
         case 'multiply':
+            if (document.getElementById('topOutput').textContent.includes('=')) {
+                document.getElementById('topOutput').textContent = displayValue + ' * ';
+                operator = '*';
+                num1 = +displayValue;
+                document.getElementById('bottomOutput').textContent = '0';
+                break;
+            }
             if(document.getElementById('topOutput').textContent.includes('+') ||
             document.getElementById('topOutput').textContent.includes('-') ||
             document.getElementById('topOutput').textContent.includes('*') ||
@@ -187,6 +208,13 @@ buttonMenu.addEventListener('click', (event) => {
             operator = '*';
             break;
         case 'divide':
+            if (document.getElementById('topOutput').textContent.includes('=')) {
+                document.getElementById('topOutput').textContent = displayValue + ' / ';
+                operator = '/';
+                num1 = +displayValue;
+                document.getElementById('bottomOutput').textContent = '0';
+                break;
+            }
             if(document.getElementById('topOutput').textContent.includes('+') ||
             document.getElementById('topOutput').textContent.includes('-') ||
             document.getElementById('topOutput').textContent.includes('*') ||
@@ -213,11 +241,24 @@ buttonMenu.addEventListener('click', (event) => {
             
             break;
         case 'equal':
+            if(document.getElementById('topOutput').textContent.includes('=')) {
+                break;
+            }
+            if (!document.getElementById('topOutput').textContent.includes('+') &&
+            !document.getElementById('topOutput').textContent.includes('-') &&
+            !document.getElementById('topOutput').textContent.includes('*') &&
+            !document.getElementById('topOutput').textContent.includes('/')) {
+                break;
+            }
+            console.log(displayValue);
+            console.log(num1);
+            console.log(num2);
+            console.log(operator);
             document.getElementById('topOutput').textContent += displayValue + ' = ';
             num2 = +displayValue;
-            displayValue ='';
+            displayValue = operate(num1, num2, operator);
             document.getElementById('bottomOutput').textContent = operate(num1, num2, operator);
-            num1 = '';
+            num1 = operate(num1, num2, operator);
             num2 = '';
             operator = '';
             break;
