@@ -1,5 +1,3 @@
-//const math = require('mathjs');
-//Can you just Consolidate Similar Cases in the Switch Statement and leave everything else the same and give me back the complete code with exlinations of the changes made please
 function add(a, b) {
     return a + b;
 }
@@ -14,7 +12,6 @@ function div(a, b) {
 }
 
 function operate(a, b, op) {
-    
     if (op === '+') {
         return add(a, b);
     } else if (op === '-') {
@@ -31,143 +28,51 @@ let num1;
 let num2;
 let operator;
 
-let buttonMenu = document.querySelector('#buttonMenu')
-
+let buttonMenu = document.querySelector('#buttonMenu');
 buttonMenu.addEventListener('click', (event) => {
     let target = event.target;
 
-    switch(target.id) {
-        case 'zero':
-            if (document.getElementById('topOutput').textContent.includes('=')) {
-                document.getElementById('topOutput').textContent = '';
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            if (document.getElementById('bottomOutput').textContent === '0') {
-                document.getElementById('bottomOutput').textContent = '0';
-                displayValue = '0';
-                break;
-            }
-            document.getElementById('bottomOutput').textContent += '0';
-            displayValue += '0';
-            break;
-        case 'one':
-            if (document.getElementById('topOutput').textContent.includes('=')) {
-                document.getElementById('topOutput').textContent = '';
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            if (document.getElementById('bottomOutput').textContent === '0') {
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            document.getElementById('bottomOutput').textContent += '1';
-            displayValue += '1';
-            break;
-        case 'two':
-            if (document.getElementById('topOutput').textContent.includes('=')) {
-                document.getElementById('topOutput').textContent = '';
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            if (document.getElementById('bottomOutput').textContent === '0') {
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            document.getElementById('bottomOutput').textContent += '2';
-            displayValue += '2';
-            break;
-        case 'three':
-            if (document.getElementById('topOutput').textContent.includes('=')) {
-                document.getElementById('topOutput').textContent = '';
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            if (document.getElementById('bottomOutput').textContent === '0') {
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            document.getElementById('bottomOutput').textContent += '3';
-            displayValue += '3';
-            break;
-        case 'four':
-            if (document.getElementById('topOutput').textContent.includes('=')) {
-                document.getElementById('topOutput').textContent = '';
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            if (document.getElementById('bottomOutput').textContent === '0') {
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            document.getElementById('bottomOutput').textContent += '4';
-            displayValue += '4';
-            break;
-        case 'five':
-            if (document.getElementById('topOutput').textContent.includes('=')) {
-                document.getElementById('topOutput').textContent = '';
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            if (document.getElementById('bottomOutput').textContent === '0') {
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            document.getElementById('bottomOutput').textContent += '5';
-            displayValue += '5';
-            break;
-        case 'six':
-            if (document.getElementById('topOutput').textContent.includes('=')) {
-                document.getElementById('topOutput').textContent = '';
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            if (document.getElementById('bottomOutput').textContent === '0') {
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            document.getElementById('bottomOutput').textContent += '6';
-            displayValue += '6';
-            break;
-        case 'seven':
-            if (document.getElementById('topOutput').textContent.includes('=')) {
-                document.getElementById('topOutput').textContent = '';
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            if (document.getElementById('bottomOutput').textContent === '0') {
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            document.getElementById('bottomOutput').textContent += '7';
-            displayValue += '7';
-            break;
-        case 'eight':
-            if (document.getElementById('topOutput').textContent.includes('=')) {
-                document.getElementById('topOutput').textContent = '';
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            if (document.getElementById('bottomOutput').textContent === '0') {
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            document.getElementById('bottomOutput').textContent += '8';
-            displayValue += '8';
-            break;
-        case 'nine':
-            if (document.getElementById('topOutput').textContent.includes('=')) {
-                document.getElementById('topOutput').textContent = '';
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            if (document.getElementById('bottomOutput').textContent === '0') {
-                document.getElementById('bottomOutput').textContent = '';
-                displayValue = '';
-            }
-            document.getElementById('bottomOutput').textContent += '9';
-            displayValue += '9';
-            break;
+    const numberButtons = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine'];
+    const numberIndex = numberButtons.indexOf(target.id);
+    const operatorButtons = ['plus', 'minus', 'multiply', 'divide'];
+    const operatorIndex = operatorButtons.indexOf(target.alt);
+
+    if (numberIndex !== -1) {
+        const numberValue = numberIndex.toString();
+        if (document.getElementById('topOutput').textContent.includes('=')) {
+            document.getElementById('topOutput').textContent = '';
+            document.getElementById('bottomOutput').textContent = '';
+            displayValue = '';
+        }
+        if (document.getElementById('bottomOutput').textContent === '0') {
+            document.getElementById('bottomOutput').textContent = '';
+            displayValue = '';
+        }
+        document.getElementById('bottomOutput').textContent += numberValue;
+        displayValue += numberValue;
+    } else if (operatorIndex !== -1) {
+        const operatorValue = operatorIndex.toString();
+        if (document.getElementById('topOutput').textContent.includes('=')) {
+            document.getElementById('topOutput').textContent = displayValue + '' + operatorValue + '';
+            operator = operatorValue;
+            num1 = +displayValue;
+            document.getElementById('bottomOutput').textContent = '0';
+        }
+        if(document.getElementById('topOutput').textContent.includes('+') ||
+        document.getElementById('topOutput').textContent.includes('-') ||
+        document.getElementById('topOutput').textContent.includes('*') ||
+        document.getElementById('topOutput').textContent.includes('/')) {
+            num2 = +displayValue;
+            displayValue ='';
+            document.getElementById('topOutput').textContent = operate(num1, num2, operator) + '' + operatorValue + '';
+            document.getElementById('bottomOutput').textContent = '0';
+            num1 = operate(num1, num2, operator);
+            num2 = '';
+            operator = operatorValue;
+        }
+    } else {
+        // Rest of the switch cases for operators, decimal, clear, etc.
+        switch (target.id) {
         case 'decimal':
             if (document.getElementById('topOutput').textContent.includes('=')) {
                 document.getElementById('topOutput').textContent = '';
@@ -339,5 +244,6 @@ buttonMenu.addEventListener('click', (event) => {
             num2 = '';
             operator = '';
             break;
+        }
     }
 });
