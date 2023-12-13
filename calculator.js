@@ -1,5 +1,5 @@
 //const math = require('mathjs');
-
+//how could this code be improved in aspects of readability, potential use of arrays and array methods if that makes sense or other suggestions. indicate all changes made and explain to me as if I was a beginner why you made them
 function add(a, b) {
     return a + b;
 }
@@ -12,11 +12,6 @@ function mul(a, b) {
 function div(a, b) {
     return a / b;
 }
-
-let displayValue = '0';
-let num1;
-let num2;
-let operator;
 
 function operate(a, b, op) {
     
@@ -31,6 +26,11 @@ function operate(a, b, op) {
     }
 }
 
+let displayValue = '0';
+let num1;
+let num2;
+let operator;
+
 let buttonMenu = document.querySelector('#buttonMenu')
 
 buttonMenu.addEventListener('click', (event) => {
@@ -38,6 +38,11 @@ buttonMenu.addEventListener('click', (event) => {
 
     switch(target.id) {
         case 'zero':
+                        if (document.getElementById('topOutput').textContent.includes('=')) {
+                document.getElementById('topOutput').textContent = '';
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
             if (document.getElementById('bottomOutput').textContent === '0') {
                 document.getElementById('bottomOutput').textContent = '0';
                 displayValue = '0';
@@ -47,6 +52,11 @@ buttonMenu.addEventListener('click', (event) => {
             displayValue += '0';
             break;
         case 'one':
+            if (document.getElementById('topOutput').textContent.includes('=')) {
+                document.getElementById('topOutput').textContent = '';
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
             if (document.getElementById('bottomOutput').textContent === '0') {
                 document.getElementById('bottomOutput').textContent = '';
                 displayValue = '';
@@ -55,6 +65,11 @@ buttonMenu.addEventListener('click', (event) => {
             displayValue += '1';
             break;
         case 'two':
+            if (document.getElementById('topOutput').textContent.includes('=')) {
+                document.getElementById('topOutput').textContent = '';
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
             if (document.getElementById('bottomOutput').textContent === '0') {
                 document.getElementById('bottomOutput').textContent = '';
                 displayValue = '';
@@ -63,6 +78,11 @@ buttonMenu.addEventListener('click', (event) => {
             displayValue += '2';
             break;
         case 'three':
+            if (document.getElementById('topOutput').textContent.includes('=')) {
+                document.getElementById('topOutput').textContent = '';
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
             if (document.getElementById('bottomOutput').textContent === '0') {
                 document.getElementById('bottomOutput').textContent = '';
                 displayValue = '';
@@ -71,6 +91,11 @@ buttonMenu.addEventListener('click', (event) => {
             displayValue += '3';
             break;
         case 'four':
+            if (document.getElementById('topOutput').textContent.includes('=')) {
+                document.getElementById('topOutput').textContent = '';
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
             if (document.getElementById('bottomOutput').textContent === '0') {
                 document.getElementById('bottomOutput').textContent = '';
                 displayValue = '';
@@ -79,6 +104,11 @@ buttonMenu.addEventListener('click', (event) => {
             displayValue += '4';
             break;
         case 'five':
+            if (document.getElementById('topOutput').textContent.includes('=')) {
+                document.getElementById('topOutput').textContent = '';
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
             if (document.getElementById('bottomOutput').textContent === '0') {
                 document.getElementById('bottomOutput').textContent = '';
                 displayValue = '';
@@ -87,6 +117,11 @@ buttonMenu.addEventListener('click', (event) => {
             displayValue += '5';
             break;
         case 'six':
+            if (document.getElementById('topOutput').textContent.includes('=')) {
+                document.getElementById('topOutput').textContent = '';
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
             if (document.getElementById('bottomOutput').textContent === '0') {
                 document.getElementById('bottomOutput').textContent = '';
                 displayValue = '';
@@ -95,6 +130,11 @@ buttonMenu.addEventListener('click', (event) => {
             displayValue += '6';
             break;
         case 'seven':
+            if (document.getElementById('topOutput').textContent.includes('=')) {
+                document.getElementById('topOutput').textContent = '';
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
             if (document.getElementById('bottomOutput').textContent === '0') {
                 document.getElementById('bottomOutput').textContent = '';
                 displayValue = '';
@@ -103,6 +143,11 @@ buttonMenu.addEventListener('click', (event) => {
             displayValue += '7';
             break;
         case 'eight':
+            if (document.getElementById('topOutput').textContent.includes('=')) {
+                document.getElementById('topOutput').textContent = '';
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
             if (document.getElementById('bottomOutput').textContent === '0') {
                 document.getElementById('bottomOutput').textContent = '';
                 displayValue = '';
@@ -111,6 +156,11 @@ buttonMenu.addEventListener('click', (event) => {
             displayValue += '8';
             break;
         case 'nine':
+            if (document.getElementById('topOutput').textContent.includes('=')) {
+                document.getElementById('topOutput').textContent = '';
+                document.getElementById('bottomOutput').textContent = '';
+                displayValue = '';
+            }
             if (document.getElementById('bottomOutput').textContent === '0') {
                 document.getElementById('bottomOutput').textContent = '';
                 displayValue = '';
@@ -119,7 +169,12 @@ buttonMenu.addEventListener('click', (event) => {
             displayValue += '9';
             break;
         case 'decimal':
-            if(displayValue.includes('.')) {
+            if (document.getElementById('topOutput').textContent.includes('=')) {
+                document.getElementById('topOutput').textContent = '';
+                document.getElementById('bottomOutput').textContent = '0';
+                displayValue = '0';
+            }
+            if(document.getElementById('bottomOutput').textContent.includes('.')) {
                 break;
             }
             document.getElementById('bottomOutput').textContent += '.';
@@ -235,10 +290,23 @@ buttonMenu.addEventListener('click', (event) => {
             operator = '/';
             break;    
         case 'clear':
-            location.reload();
+            displayValue = '0';
+            num1 = undefined;
+            num2 = undefined;
+            operator = undefined;
+            document.getElementById('bottomOutput').textContent = '0';
+            document.getElementById('topOutput').textContent = '';
             break;
         case 'delete':
-            
+            console.log(displayValue);
+            console.log(document.getElementById('bottomOutput').textContent);
+            displayValue = displayValue.toString();
+            document.getElementById('bottomOutput').textContent = 
+            document.getElementById('bottomOutput').textContent.slice(0, -1);
+            displayValue = displayValue.slice(0, -1);
+            if (document.getElementById('bottomOutput').textContent === '') {
+                document.getElementById('bottomOutput').textContent = '0'
+            }
             break;
         case 'equal':
             if(document.getElementById('topOutput').textContent.includes('=')) {
