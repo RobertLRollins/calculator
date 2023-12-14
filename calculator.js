@@ -1,5 +1,5 @@
 //const math = require('mathjs');
-//Can you just Consolidate Similar Cases in the Switch Statement and leave everything else the same and give me back the complete code with exlinations of the changes made please
+
 function add(a, b) {
     return a + b;
 }
@@ -206,7 +206,6 @@ buttonMenu.addEventListener('click', (event) => {
             displayValue = '0';
             document.getElementById('bottomOutput').textContent = '0';
             operator = '+';
-
             break;
         case 'minus':
             if (document.getElementById('topOutput').textContent.includes('=')) {
@@ -307,8 +306,6 @@ buttonMenu.addEventListener('click', (event) => {
                 document.getElementById('topOutput').textContent = '';
                 break;
             }
-            console.log(displayValue);
-            console.log(document.getElementById('bottomOutput').textContent);
             displayValue = displayValue.toString();
             document.getElementById('bottomOutput').textContent = 
             document.getElementById('bottomOutput').textContent.slice(0, -1);
@@ -327,10 +324,6 @@ buttonMenu.addEventListener('click', (event) => {
             !document.getElementById('topOutput').textContent.includes('/')) {
                 break;
             }
-            console.log(displayValue);
-            console.log(num1);
-            console.log(num2);
-            console.log(operator);
             document.getElementById('topOutput').textContent += displayValue + ' = ';
             num2 = +displayValue;
             displayValue = operate(num1, num2, operator);
